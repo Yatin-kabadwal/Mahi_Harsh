@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahi & Harsh — Welcome</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Quicksand:wght@400;600;700&family=Orbitron:wght@700;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Quicksand',sans-serif;overflow:hidden;cursor:none;height:100vh;width:100vw;}
+
+/* CURSOR */
+#cur{width:14px;height:14px;background:#fff;border-radius:50%;position:fixed;pointer-events:none;z-index:9999;mix-blend-mode:difference;transform:translate(-50%,-50%);transition:transform .1s;}
+#cur2{width:38px;height:38px;border:2px solid rgba(255,255,255,.35);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .08s,top .08s;}
+
+/* BG */
+.bg{position:fixed;inset:0;background:#080808;z-index:0;}
+.bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 25% 50%,rgba(200,20,100,.18) 0%,transparent 60%),radial-gradient(ellipse 80% 60% at 75% 50%,rgba(0,180,220,.15) 0%,transparent 60%);}
+
+/* STARS */
+#stars{position:fixed;inset:0;z-index:1;overflow:hidden;}
+.star{position:absolute;border-radius:50%;background:#fff;animation:twk var(--d,3s) var(--dl,0s) infinite alternate;}
+@keyframes twk{from{opacity:.1;transform:scale(.8)}to{opacity:.9;transform:scale(1.4)}}
+
+/* TITLE */
+.top-title{position:absolute;top:5%;left:50%;transform:translateX(-50%);z-index:10;text-align:center;}
+.top-title h1{font-family:'Dancing Script',cursive;font-size:clamp(1.8rem,4vw,3rem);color:#fff;letter-spacing:2px;text-shadow:0 0 40px rgba(255,255,255,.3);animation:fadeSlideDown .8s ease both;}
+.top-title p{color:rgba(255,255,255,.4);font-size:.8rem;letter-spacing:5px;text-transform:uppercase;margin-top:6px;animation:fadeSlideDown .8s .15s ease both;}
+@keyframes fadeSlideDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
+
+/* SPLIT */
+.split{position:fixed;inset:0;display:flex;z-index:5;}
+.half{flex:1;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;transition:flex .7s cubic-bezier(.22,1,.36,1);}
+.half:hover{flex:1.45;}
+
+/* MAHI SIDE */
+.mahi-side{background:linear-gradient(145deg,#110008,#2e0018,#500028);}
+.mahi-side::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 35% 50%,rgba(220,30,120,.4) 0%,transparent 65%);animation:pm 4s ease-in-out infinite alternate;}
+@keyframes pm{from{opacity:.5}to{opacity:1}}
+
+/* Petals */
+.petal{position:absolute;border-radius:50% 0;pointer-events:none;opacity:0;animation:fp linear infinite;}
+@keyframes fp{0%{opacity:0;transform:translateY(-5vh) rotate(0)}10%{opacity:.8}90%{opacity:.3}100%{opacity:0;transform:translateY(105vh) rotate(400deg)}}
+
+/* HARSH SIDE */
+.harsh-side{background:linear-gradient(145deg,#020210,#07072a,#0c1240);}
+.harsh-side::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 65% 50%,rgba(0,200,255,.3) 0%,transparent 65%);animation:ph 4s ease-in-out infinite alternate;}
+@keyframes ph{from{opacity:.4}to{opacity:1}}
+
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(0,220,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,220,255,.06) 1px,transparent 1px);background-size:36px 36px;animation:gm 18s linear infinite;}
+@keyframes gm{from{transform:translateY(0)}to{transform:translateY(36px)}}
+
+/* CARDS */
+.card-inner{position:relative;z-index:3;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px;padding:20px;pointer-events:none;}
+
+.avatar{width:120px;height:120px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:3.5rem;transition:transform .4s ease;}
+.half:hover .avatar{transform:scale(1.12) rotate(-4deg);}
+
+.mahi-avatar{background:radial-gradient(circle,#ff70b8,#d81b77);box-shadow:0 0 40px rgba(220,30,120,.7),0 0 80px rgba(220,30,120,.25);border:3px solid rgba(255,255,255,.25);}
+.harsh-avatar{background:radial-gradient(circle,#00e5ff,#6c3fff);box-shadow:0 0 40px rgba(0,220,255,.7),0 0 80px rgba(108,63,255,.3);border:3px solid rgba(255,255,255,.15);}
+
+.cname{font-size:clamp(2.8rem,5.5vw,4.5rem);font-weight:700;color:#fff;transition:letter-spacing .4s;}
+.half:hover .cname{letter-spacing:8px;}
+.mahi-name{font-family:'Dancing Script',cursive;color:#ffb3d9;}
+.harsh-name{font-family:'Orbitron',monospace;color:#00e5ff;font-size:clamp(2rem,4vw,3.2rem);}
+
+.csub{color:rgba(255,255,255,.45);font-size:.8rem;letter-spacing:3px;text-transform:uppercase;}
+
+.enter-btn{padding:12px 30px;border-radius:50px;border:2px solid;background:transparent;font-family:'Quicksand',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .3s;pointer-events:all;}
+.mahi-side .enter-btn{border-color:#ff70b8;color:#ff70b8;}
+.mahi-side .enter-btn:hover{background:#d81b77;border-color:#d81b77;color:#fff;box-shadow:0 0 28px rgba(216,27,119,.5);}
+.harsh-side .enter-btn{border-color:#00e5ff;color:#00e5ff;}
+.harsh-side .enter-btn:hover{background:#00c9e0;border-color:#00c9e0;color:#020210;box-shadow:0 0 28px rgba(0,229,255,.5);}
+
+/* DIVIDER */
+.divider{position:absolute;left:50%;top:0;bottom:0;transform:translateX(-50%);width:2px;z-index:8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;pointer-events:none;}
+.div-line{flex:1;width:1px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.5),transparent);}
+.div-orb{width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 0 20px #fff;animation:pulse-orb 2s ease-in-out infinite;}
+@keyframes pulse-orb{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.5);opacity:1}}
+
+/* SPARKLE */
+.spk{position:fixed;pointer-events:none;z-index:9997;font-size:.95rem;animation:spkanim .75s ease forwards;}
+@keyframes spkanim{0%{opacity:1;transform:scale(0) translateY(0)}50%{opacity:1;transform:scale(1.6) translateY(-18px)}100%{opacity:0;transform:scale(.4) translateY(-40px)}}
+
+/* TRANSITION */
+#cover{position:fixed;inset:0;z-index:9990;pointer-events:none;display:flex;}
+.c-l,.c-r{flex:1;transform:scaleX(0);transition:transform .45s cubic-bezier(.77,0,.175,1);}
+.c-l{background:#d81b77;transform-origin:right;}
+.c-r{background:#00e5ff;transform-origin:left;}
+#cover.go .c-l,.c-go .c-r,#cover.go .c-r{transform:scaleX(1);}
+
+@media(max-width:600px){
+  .top-title{top:3%;}
+  .avatar{width:90px;height:90px;font-size:2.6rem;}
+  .csub{font-size:.65rem;}
+}
+</style>
+</head>
+<body>
+<div id="cur"></div>
+<div id="cur2"></div>
+<div id="cover"><div class="c-l"></div><div class="c-r"></div></div>
+
+<div class="bg"></div>
+<div id="stars"></div>
+
+<div class="top-title">
+  <h1>✨ Welcome to Our World ✨</h1>
+  <p>choose your adventure</p>
+</div>
+
+<div class="split">
+  <!-- MAHI -->
+  <div class="half mahi-side" id="mahiCard" onclick="go('mahi.html')">
+    <div id="petals"></div>
+    <div class="card-inner">
+      <div class="avatar mahi-avatar">🌸</div>
+      <div class="cname mahi-name">Mahi</div>
+      <div class="csub">Fashion · Jewellery · Style</div>
+      <button class="enter-btn" onclick="go('mahi.html')">Enter ✨</button>
+    </div>
+  </div>
+
+  <!-- HARSH -->
+  <div class="half harsh-side" id="harshCard" onclick="go('harsh.html')">
+    <div class="grid-bg"></div>
+    <div class="card-inner">
+      <div class="avatar harsh-avatar">🎮</div>
+      <div class="cname harsh-name">Harsh</div>
+      <div class="csub">Games · Action · Play</div>
+      <button class="enter-btn" onclick="go('harsh.html')">Play ⚡</button>
+    </div>
+  </div>
+
+  <div class="divider">
+    <div class="div-line"></div>
+    <div class="div-orb"></div>
+    <div class="div-line"></div>
+  </div>
+</div>
+
+<script>
+// Cursor
+const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
+let cx=0,cy=0;
+document.addEventListener('mousemove',e=>{
+  cx=e.clientX;cy=e.clientY;
+  cur.style.left=cx+'px';cur.style.top=cy+'px';
+  setTimeout(()=>{cur2.style.left=cx+'px';cur2.style.top=cy+'px';},70);
+});
+document.addEventListener('click',e=>{
+  ['✨','⭐','💫','🌟','✦','💕'].forEach((s,i)=>{
+    setTimeout(()=>{
+      const el=document.createElement('div');
+      el.className='spk';el.textContent=s;
+      el.style.left=e.clientX+Math.cos(i*60*Math.PI/180)*24-12+'px';
+      el.style.top=e.clientY+Math.sin(i*60*Math.PI/180)*24-12+'px';
+      document.body.appendChild(el);setTimeout(()=>el.remove(),750);
+    },i*40);
+  });
+});
+
+// Stars
+const sc=document.getElementById('stars');
+for(let i=0;i<150;i++){
+  const s=document.createElement('div');s.className='star';
+  const sz=Math.random()*2.5+.8;
+  s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*4}s;--dl:${Math.random()*3}s;`;
+  sc.appendChild(s);
+}
+
+// Petals
+const pc=document.getElementById('petals');
+const pcols=['#e91e8c','#ff6eb4','#ffd700','#ff9ed4','#fff'];
+for(let i=0;i<22;i++){
+  const p=document.createElement('div');p.className='petal';
+  const sz=6+Math.random()*10;
+  p.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;background:${pcols[Math.floor(Math.random()*pcols.length)]};opacity:.7;animation-duration:${9+Math.random()*9}s;animation-delay:${Math.random()*7}s;`;
+  pc.appendChild(p);
+}
+
+// Navigation
+const cover=document.getElementById('cover');
+function go(url){
+  cover.classList.add('go');
+  setTimeout(()=>window.location.href=url,450);
+}
+</script>
+</body>
+</html>
